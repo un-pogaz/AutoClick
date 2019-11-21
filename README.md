@@ -10,7 +10,7 @@ Before pressing the key, it is necessary to "Activate" the application
 
 Select a Key, then  and press the selected key for a lot of click
 
-Example usage : [https://orteil.dashnet.org/cookieclicker/](Cookie Clicker)...
+Example usage : [Cookie Clicker](https://orteil.dashnet.org/cookieclicker/)...
 
 comand line:
 
