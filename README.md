@@ -14,7 +14,7 @@ Example usage : [Cookie Clicker](https://orteil.dashnet.org/cookieclicker/)...
 
 comand line:
 
--t --tick <number>
+-t --tick \<number\>
     
 Set the click interval
 

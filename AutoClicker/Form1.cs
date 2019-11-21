@@ -10,38 +10,49 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Runtime.InteropServices;
 
-namespace AutoClick
+namespace AutoClicker
 {
-    public partial class Form1 : Form
+    public partial class frmAutoClicker : Form
     {
-        public Form1()
+        public frmAutoClicker()
         {
             InitializeComponent();
-            numNumeric.Maximum = trkTrackBar.Maximum;
-            numNumeric.Minimum = trkTrackBar.Minimum;
-            trkTrackBar.Value = timClock.Interval;
+            numTick.Maximum = trkTick.Maximum;
+            numTick.Minimum = trkTick.Minimum;
+            trkTick.Value = timClock.Interval;
 
+
+            numOpacity.Maximum = trkOpacity.Maximum;
+            numOpacity.Minimum = trkOpacity.Minimum;
+
+        }
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            btnStop.PerformClick();
+
+            #region Args
             for (int i = 0; i < Settings.Args.Length; i++)
             {
-                if (Settings.Args[i].Equals(StringComparison.InvariantCultureIgnoreCase, "-t", "--tick") &&  i+1 < Settings.Args.Length)
+                if (Settings.Args[i].Equals(StringComparison.InvariantCultureIgnoreCase, "-t", "--tick") && i + 1 < Settings.Args.Length)
                 {
                     int parse;
                     if (int.TryParse(Settings.Args[i + 1], out parse))
-                        trkTrackBar.Value = parse;
+                        trkTick.Value = parse;
                 }
 
-                if (Settings.Args[i].Equals("   ", StringComparison.InvariantCultureIgnoreCase) && i + 1 < Settings.Args.Length)
+                if (Settings.Args[i].Equals("--toggle", StringComparison.InvariantCultureIgnoreCase) && i + 1 < Settings.Args.Length)
                 {
                     chkToggle.Checked = true;
                 }
 
                 if ((Settings.Args[i].Equals(StringComparison.InvariantCultureIgnoreCase, "-k", "--key")) && i + 1 < Settings.Args.Length)
                 {
-                    if (Settings.Args[i+1].Equals(StringComparison.InvariantCultureIgnoreCase, "Caps", "CapsLock"))
+                    #region Key
+                    if (Settings.Args[i + 1].Equals(StringComparison.InvariantCultureIgnoreCase, "Caps", "CapsLock"))
                     {
                         rdbCaps.Checked = true;
                     }
-                    else if(Settings.Args[i+1].Equals(StringComparison.InvariantCultureIgnoreCase, "Num", "NumLock"))
+                    else if (Settings.Args[i + 1].Equals(StringComparison.InvariantCultureIgnoreCase, "Num", "NumLock"))
                     {
                         rdbNum.Checked = true;
                     }
@@ -49,42 +60,48 @@ namespace AutoClick
                     {
                         rdbScroll.Checked = true;
                     }
-                    else if (Settings.Args[i+1].Equals("Alt", StringComparison.InvariantCultureIgnoreCase))
+
+                    else if (Settings.Args[i + 1].Equals("Alt", StringComparison.InvariantCultureIgnoreCase))
                     {
                         rdbAlt.Checked = true;
                     }
-                    else if (Settings.Args[i+1].Equals("Ctrl", StringComparison.InvariantCultureIgnoreCase))
+                    else if (Settings.Args[i + 1].Equals("Ctrl", StringComparison.InvariantCultureIgnoreCase))
                     {
                         rdbCtrl.Checked = true;
                     }
-                    else if (Settings.Args[i+1].Equals("Shift", StringComparison.InvariantCultureIgnoreCase))
+                    else if (Settings.Args[i + 1].Equals("Shift", StringComparison.InvariantCultureIgnoreCase))
                     {
                         rdbShift.Checked = true;
                     }
+                    else if (Settings.Args[i + 1].Equals("Pause", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        rdbPause.Checked = true;
+                    }
+                    #endregion
                 }
-            }
-        }
-        private void Form1_Shown(object sender, EventArgs e)
-        {
-            btnStop.PerformClick();
-            Refresh();
 
-            for (int i = 0; i < Settings.Args.Length; i++)
-            {
                 if (Settings.Args[i].Equals(StringComparison.InvariantCultureIgnoreCase, "-r", "--active"))
                     btnActive.PerformClick();
+
+                if ((Settings.Args[i].Equals("--opacity", StringComparison.InvariantCultureIgnoreCase)) && i + 1 < Settings.Args.Length)
+                {
+                    int parse;
+                    if (int.TryParse(Settings.Args[i + 1], out parse))
+                        trkOpacity.Value = parse;
+                }
             }
+            #endregion
         }
 
-        private void trkTrackBar_ValueChanged(object sender, EventArgs e)
+        private void trkTick_ValueChanged(object sender, EventArgs e)
         {
-            timClock.Interval = trkTrackBar.Value;
-            numNumeric.Value = trkTrackBar.Value;
+            timClock.Interval = trkTick.Value;
+            numTick.Value = trkTick.Value;
         }
 
-        private void numNumeric_ValueChanged(object sender, EventArgs e)
+        private void numTick_ValueChanged(object sender, EventArgs e)
         {
-            trkTrackBar.Value = (int)numNumeric.Value;
+            trkTick.Value = (int)numTick.Value;
         }
         
         private const int MOUSEEVENTF_LEFTDOWN = 0x0002; /* left button down */
@@ -124,9 +141,8 @@ namespace AutoClick
         {
             btnStop.Enabled = !enabled;
             btnActive.Enabled = enabled;
-            trkTrackBar.Enabled = enabled;
-            numNumeric.Enabled = enabled;
-            trkTrackBar.Enabled = enabled;
+            trkTick.Enabled = enabled;
+            numTick.Enabled = enabled;
 
             chkToggle.Enabled = enabled;
 
@@ -138,6 +154,7 @@ namespace AutoClick
             rdbCtrl.Enabled = enabled;
             rdbShift.Enabled = enabled;
             rdbPause.Enabled = enabled;
+            
         }
 
         private void timToggle_Tick(object sender, EventArgs e)
@@ -195,5 +212,45 @@ namespace AutoClick
 
         public bool KeyTogglePressed { get; private set; }
 
+
+        #region Opacity
+
+        private void numOpacity_ValueChanged(object sender, EventArgs e)
+        {
+            trkOpacity.Value = (int)numOpacity.Value;
+        }
+
+        private void trkOpacity_ValueChanged(object sender, EventArgs e)
+        {
+            Opacity = trkOpacity.Value/100d;
+            numOpacity.Value = trkOpacity.Value;
+        }
+
+        private void trkOpacity_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            Opacity = trkOpacity.Value / 100d;
+        }
+
+        private void trkOpacity_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            Opacity = 1;
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            Opacity = 1;
+        }
+
+        private void Form1_Deactivate(object sender, EventArgs e)
+        {
+            Opacity = trkOpacity.Value / 100d;
+        }
+
+        #endregion
+
+        private void chkTopMost_CheckedChanged(object sender, EventArgs e)
+        {
+            TopMost = chkTopMost.Checked;
+        }
     }
 }

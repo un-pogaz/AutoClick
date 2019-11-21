@@ -1,6 +1,6 @@
-﻿namespace AutoClick
+﻿namespace AutoClicker
 {
-    partial class Form1
+    partial class frmAutoClicker
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.btnActive = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
-            this.numNumeric = new System.Windows.Forms.NumericUpDown();
-            this.trkTrackBar = new System.Windows.Forms.TrackBar();
+            this.numTick = new System.Windows.Forms.NumericUpDown();
+            this.trkTick = new System.Windows.Forms.TrackBar();
             this.timClock = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.rdbCaps = new System.Windows.Forms.RadioButton();
@@ -47,9 +47,15 @@
             this.rdbPause = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.rdbScroll = new System.Windows.Forms.RadioButton();
-            ((System.ComponentModel.ISupportInitialize)(this.numNumeric)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trkTrackBar)).BeginInit();
+            this.trkOpacity = new System.Windows.Forms.TrackBar();
+            this.chkTopMost = new System.Windows.Forms.CheckBox();
+            this.numOpacity = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.numTick)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkTick)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trkOpacity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numOpacity)).BeginInit();
             this.SuspendLayout();
             // 
             // btnActive
@@ -80,43 +86,43 @@
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
-            // numNumeric
+            // numTick
             // 
-            this.numNumeric.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numNumeric.Location = new System.Drawing.Point(321, 48);
-            this.numNumeric.Maximum = new decimal(new int[] {
+            this.numTick.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numTick.Location = new System.Drawing.Point(321, 48);
+            this.numTick.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numNumeric.Minimum = new decimal(new int[] {
+            this.numTick.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numNumeric.Name = "numNumeric";
-            this.numNumeric.Size = new System.Drawing.Size(59, 20);
-            this.numNumeric.TabIndex = 2;
-            this.numNumeric.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numNumeric.Value = new decimal(new int[] {
+            this.numTick.Name = "numTick";
+            this.numTick.Size = new System.Drawing.Size(59, 20);
+            this.numTick.TabIndex = 2;
+            this.numTick.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numTick.Value = new decimal(new int[] {
             100,
             0,
             0,
             0});
-            this.numNumeric.ValueChanged += new System.EventHandler(this.numNumeric_ValueChanged);
+            this.numTick.ValueChanged += new System.EventHandler(this.numTick_ValueChanged);
             // 
-            // trkTrackBar
+            // trkTick
             // 
-            this.trkTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.trkTick.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trkTrackBar.Location = new System.Drawing.Point(12, 12);
-            this.trkTrackBar.Maximum = 10000;
-            this.trkTrackBar.Minimum = 1;
-            this.trkTrackBar.Name = "trkTrackBar";
-            this.trkTrackBar.Size = new System.Drawing.Size(386, 45);
-            this.trkTrackBar.TabIndex = 3;
-            this.trkTrackBar.Value = 100;
-            this.trkTrackBar.ValueChanged += new System.EventHandler(this.trkTrackBar_ValueChanged);
+            this.trkTick.Location = new System.Drawing.Point(12, 12);
+            this.trkTick.Maximum = 10000;
+            this.trkTick.Minimum = 1;
+            this.trkTick.Name = "trkTick";
+            this.trkTick.Size = new System.Drawing.Size(386, 45);
+            this.trkTick.TabIndex = 3;
+            this.trkTick.Value = 100;
+            this.trkTick.ValueChanged += new System.EventHandler(this.trkTick_ValueChanged);
             // 
             // timClock
             // 
@@ -206,7 +212,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.btnActive, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnStop, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 114);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 148);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -248,11 +254,71 @@
             this.rdbScroll.Text = "Scroll Lock";
             this.rdbScroll.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // trkOpacity
+            // 
+            this.trkOpacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.trkOpacity.Cursor = System.Windows.Forms.Cursors.Default;
+            this.trkOpacity.Location = new System.Drawing.Point(3, 115);
+            this.trkOpacity.Maximum = 100;
+            this.trkOpacity.Minimum = 30;
+            this.trkOpacity.Name = "trkOpacity";
+            this.trkOpacity.Size = new System.Drawing.Size(104, 45);
+            this.trkOpacity.TabIndex = 9;
+            this.trkOpacity.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trkOpacity.Value = 100;
+            this.trkOpacity.ValueChanged += new System.EventHandler(this.trkOpacity_ValueChanged);
+            this.trkOpacity.MouseDown += new System.Windows.Forms.MouseEventHandler(this.trkOpacity_MouseDown);
+            this.trkOpacity.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trkOpacity_MouseUp);
+            // 
+            // chkTopMost
+            // 
+            this.chkTopMost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkTopMost.AutoSize = true;
+            this.chkTopMost.Location = new System.Drawing.Point(304, 126);
+            this.chkTopMost.Name = "chkTopMost";
+            this.chkTopMost.Size = new System.Drawing.Size(100, 17);
+            this.chkTopMost.TabIndex = 10;
+            this.chkTopMost.Text = "Top of the most";
+            this.chkTopMost.UseVisualStyleBackColor = true;
+            this.chkTopMost.CheckedChanged += new System.EventHandler(this.chkTopMost_CheckedChanged);
+            // 
+            // numOpacity
+            // 
+            this.numOpacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.numOpacity.Location = new System.Drawing.Point(104, 125);
+            this.numOpacity.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.numOpacity.Name = "numOpacity";
+            this.numOpacity.Size = new System.Drawing.Size(39, 20);
+            this.numOpacity.TabIndex = 11;
+            this.numOpacity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numOpacity.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numOpacity.ValueChanged += new System.EventHandler(this.numOpacity_ValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(145, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "% opacity";
+            // 
+            // frmAutoClicker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 182);
+            this.ClientSize = new System.Drawing.Size(410, 216);
+            this.Controls.Add(this.numOpacity);
+            this.Controls.Add(this.chkTopMost);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.chkToggle);
             this.Controls.Add(this.rdbShift);
@@ -263,16 +329,23 @@
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.rdbNum);
             this.Controls.Add(this.rdbCaps);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.numNumeric);
-            this.Controls.Add(this.trkTrackBar);
+            this.Controls.Add(this.numTick);
+            this.Controls.Add(this.trkTick);
+            this.Controls.Add(this.trkOpacity);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "frmAutoClicker";
+            this.Text = "AutoClicker";
+            this.Activated += new System.EventHandler(this.Form1_Activated);
+            this.Deactivate += new System.EventHandler(this.Form1_Deactivate);
             this.Shown += new System.EventHandler(this.Form1_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.numNumeric)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trkTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTick)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkTick)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trkOpacity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numOpacity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,8 +355,8 @@
 
         private System.Windows.Forms.Button btnActive;
         private System.Windows.Forms.Button btnStop;
-        private System.Windows.Forms.NumericUpDown numNumeric;
-        private System.Windows.Forms.TrackBar trkTrackBar;
+        private System.Windows.Forms.NumericUpDown numTick;
+        private System.Windows.Forms.TrackBar trkTick;
         private System.Windows.Forms.Timer timClock;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton rdbCaps;
@@ -298,6 +371,10 @@
         private System.Windows.Forms.RadioButton rdbPause;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton rdbScroll;
+        private System.Windows.Forms.TrackBar trkOpacity;
+        private System.Windows.Forms.CheckBox chkTopMost;
+        private System.Windows.Forms.NumericUpDown numOpacity;
+        private System.Windows.Forms.Label label2;
     }
 }
 
