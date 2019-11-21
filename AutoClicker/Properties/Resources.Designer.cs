@@ -59,5 +59,15 @@ namespace AutoClicker.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Byte[].
+        /// </summary>
+        internal static byte[] Cycles_de_la_saga_Perry_Rhodan {
+            get {
+                object obj = ResourceManager.GetObject("Cycles_de_la_saga_Perry_Rhodan", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

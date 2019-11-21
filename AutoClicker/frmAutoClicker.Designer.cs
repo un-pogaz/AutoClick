@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnActive = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAutoClicker));
+            this.btnActivate = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.numTick = new System.Windows.Forms.NumericUpDown();
             this.trkTick = new System.Windows.Forms.TrackBar();
@@ -45,32 +46,34 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.timToggle = new System.Windows.Forms.Timer(this.components);
             this.rdbPause = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.rdbScroll = new System.Windows.Forms.RadioButton();
             this.trkOpacity = new System.Windows.Forms.TrackBar();
             this.chkTopMost = new System.Windows.Forms.CheckBox();
-            this.numOpacity = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblOpacity = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.numTick)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkTick)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkOpacity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numOpacity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnActive
+            // btnActivate
             // 
-            this.btnActive.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btnActivate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnActive.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActive.Location = new System.Drawing.Point(3, 3);
-            this.btnActive.Name = "btnActive";
-            this.btnActive.Size = new System.Drawing.Size(193, 57);
-            this.btnActive.TabIndex = 0;
-            this.btnActive.Text = "Active";
-            this.btnActive.UseVisualStyleBackColor = true;
-            this.btnActive.Click += new System.EventHandler(this.btnActive_Click);
+            this.btnActivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActivate.Location = new System.Drawing.Point(3, 3);
+            this.btnActivate.Name = "btnActivate";
+            this.btnActivate.Size = new System.Drawing.Size(193, 57);
+            this.btnActivate.TabIndex = 0;
+            this.btnActivate.Text = "Activate";
+            this.btnActivate.UseVisualStyleBackColor = true;
+            this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
             // 
             // btnStop
             // 
@@ -80,7 +83,7 @@
             this.btnStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStop.Location = new System.Drawing.Point(202, 3);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(194, 57);
+            this.btnStop.Size = new System.Drawing.Size(193, 57);
             this.btnStop.TabIndex = 1;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
@@ -89,7 +92,7 @@
             // numTick
             // 
             this.numTick.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numTick.Location = new System.Drawing.Point(321, 48);
+            this.numTick.Location = new System.Drawing.Point(326, 44);
             this.numTick.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -115,11 +118,11 @@
             // 
             this.trkTick.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trkTick.Location = new System.Drawing.Point(12, 12);
+            this.trkTick.Location = new System.Drawing.Point(5, 8);
             this.trkTick.Maximum = 10000;
             this.trkTick.Minimum = 1;
             this.trkTick.Name = "trkTick";
-            this.trkTick.Size = new System.Drawing.Size(386, 45);
+            this.trkTick.Size = new System.Drawing.Size(399, 45);
             this.trkTick.TabIndex = 3;
             this.trkTick.Value = 100;
             this.trkTick.ValueChanged += new System.EventHandler(this.trkTick_ValueChanged);
@@ -132,7 +135,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(382, 50);
+            this.label1.Location = new System.Drawing.Point(387, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(20, 13);
             this.label1.TabIndex = 4;
@@ -142,7 +145,7 @@
             // 
             this.rdbCaps.AutoSize = true;
             this.rdbCaps.Checked = true;
-            this.rdbCaps.Location = new System.Drawing.Point(12, 63);
+            this.rdbCaps.Location = new System.Drawing.Point(9, 59);
             this.rdbCaps.Name = "rdbCaps";
             this.rdbCaps.Size = new System.Drawing.Size(76, 17);
             this.rdbCaps.TabIndex = 5;
@@ -153,7 +156,7 @@
             // rdbNum
             // 
             this.rdbNum.AutoSize = true;
-            this.rdbNum.Location = new System.Drawing.Point(12, 86);
+            this.rdbNum.Location = new System.Drawing.Point(9, 82);
             this.rdbNum.Name = "rdbNum";
             this.rdbNum.Size = new System.Drawing.Size(74, 17);
             this.rdbNum.TabIndex = 6;
@@ -165,7 +168,7 @@
             this.chkToggle.AccessibleDescription = "";
             this.chkToggle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkToggle.AutoSize = true;
-            this.chkToggle.Location = new System.Drawing.Point(315, 87);
+            this.chkToggle.Location = new System.Drawing.Point(315, 83);
             this.chkToggle.Name = "chkToggle";
             this.chkToggle.Size = new System.Drawing.Size(89, 17);
             this.chkToggle.TabIndex = 7;
@@ -176,7 +179,7 @@
             // rdbAlt
             // 
             this.rdbAlt.AutoSize = true;
-            this.rdbAlt.Location = new System.Drawing.Point(195, 63);
+            this.rdbAlt.Location = new System.Drawing.Point(192, 59);
             this.rdbAlt.Name = "rdbAlt";
             this.rdbAlt.Size = new System.Drawing.Size(37, 17);
             this.rdbAlt.TabIndex = 6;
@@ -186,7 +189,7 @@
             // rdbCtrl
             // 
             this.rdbCtrl.AutoSize = true;
-            this.rdbCtrl.Location = new System.Drawing.Point(195, 86);
+            this.rdbCtrl.Location = new System.Drawing.Point(192, 82);
             this.rdbCtrl.Name = "rdbCtrl";
             this.rdbCtrl.Size = new System.Drawing.Size(40, 17);
             this.rdbCtrl.TabIndex = 6;
@@ -196,7 +199,7 @@
             // rdbShift
             // 
             this.rdbShift.AutoSize = true;
-            this.rdbShift.Location = new System.Drawing.Point(238, 63);
+            this.rdbShift.Location = new System.Drawing.Point(235, 59);
             this.rdbShift.Name = "rdbShift";
             this.rdbShift.Size = new System.Drawing.Size(46, 17);
             this.rdbShift.TabIndex = 6;
@@ -210,13 +213,13 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.btnActive, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnActivate, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnStop, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 148);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 41);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(399, 63);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(398, 63);
             this.tableLayoutPanel1.TabIndex = 8;
             // 
             // timToggle
@@ -227,27 +230,17 @@
             // rdbPause
             // 
             this.rdbPause.AutoSize = true;
-            this.rdbPause.Location = new System.Drawing.Point(238, 86);
+            this.rdbPause.Location = new System.Drawing.Point(235, 82);
             this.rdbPause.Name = "rdbPause";
             this.rdbPause.Size = new System.Drawing.Size(55, 17);
             this.rdbPause.TabIndex = 6;
             this.rdbPause.Text = "Pause";
             this.rdbPause.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(94, 63);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(78, 17);
-            this.radioButton1.TabIndex = 6;
-            this.radioButton1.Text = "Scroll Lock";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
             // rdbScroll
             // 
             this.rdbScroll.AutoSize = true;
-            this.rdbScroll.Location = new System.Drawing.Point(94, 63);
+            this.rdbScroll.Location = new System.Drawing.Point(91, 59);
             this.rdbScroll.Name = "rdbScroll";
             this.rdbScroll.Size = new System.Drawing.Size(78, 17);
             this.rdbScroll.TabIndex = 6;
@@ -258,7 +251,7 @@
             // 
             this.trkOpacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.trkOpacity.Cursor = System.Windows.Forms.Cursors.Default;
-            this.trkOpacity.Location = new System.Drawing.Point(3, 115);
+            this.trkOpacity.Location = new System.Drawing.Point(3, 8);
             this.trkOpacity.Maximum = 100;
             this.trkOpacity.Minimum = 30;
             this.trkOpacity.Name = "trkOpacity";
@@ -274,7 +267,7 @@
             // 
             this.chkTopMost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkTopMost.AutoSize = true;
-            this.chkTopMost.Location = new System.Drawing.Point(304, 126);
+            this.chkTopMost.Location = new System.Drawing.Point(307, 21);
             this.chkTopMost.Name = "chkTopMost";
             this.chkTopMost.Size = new System.Drawing.Size(100, 17);
             this.chkTopMost.TabIndex = 10;
@@ -282,59 +275,60 @@
             this.chkTopMost.UseVisualStyleBackColor = true;
             this.chkTopMost.CheckedChanged += new System.EventHandler(this.chkTopMost_CheckedChanged);
             // 
-            // numOpacity
+            // lblOpacity
             // 
-            this.numOpacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.numOpacity.Location = new System.Drawing.Point(104, 125);
-            this.numOpacity.Minimum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.numOpacity.Name = "numOpacity";
-            this.numOpacity.Size = new System.Drawing.Size(39, 20);
-            this.numOpacity.TabIndex = 11;
-            this.numOpacity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numOpacity.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.numOpacity.ValueChanged += new System.EventHandler(this.numOpacity_ValueChanged);
+            this.lblOpacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblOpacity.AutoSize = true;
+            this.lblOpacity.Location = new System.Drawing.Point(102, 22);
+            this.lblOpacity.Name = "lblOpacity";
+            this.lblOpacity.Size = new System.Drawing.Size(70, 13);
+            this.lblOpacity.TabIndex = 4;
+            this.lblOpacity.Text = "100% opacity";
             // 
-            // label2
+            // splitContainer1
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(145, 127);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "% opacity";
+            this.splitContainer1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.IsSplitterFixed = true;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.splitContainer1.Panel1.Controls.Add(this.numTick);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1.Controls.Add(this.trkTick);
+            this.splitContainer1.Panel1.Controls.Add(this.rdbCaps);
+            this.splitContainer1.Panel1.Controls.Add(this.chkToggle);
+            this.splitContainer1.Panel1.Controls.Add(this.rdbNum);
+            this.splitContainer1.Panel1.Controls.Add(this.rdbShift);
+            this.splitContainer1.Panel1.Controls.Add(this.rdbPause);
+            this.splitContainer1.Panel1.Controls.Add(this.rdbScroll);
+            this.splitContainer1.Panel1.Controls.Add(this.rdbCtrl);
+            this.splitContainer1.Panel1.Controls.Add(this.rdbAlt);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.splitContainer1.Panel2.Controls.Add(this.lblOpacity);
+            this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
+            this.splitContainer1.Panel2.Controls.Add(this.chkTopMost);
+            this.splitContainer1.Panel2.Controls.Add(this.trkOpacity);
+            this.splitContainer1.Size = new System.Drawing.Size(410, 220);
+            this.splitContainer1.SplitterDistance = 110;
+            this.splitContainer1.SplitterWidth = 2;
+            this.splitContainer1.TabIndex = 11;
             // 
             // frmAutoClicker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 216);
-            this.Controls.Add(this.numOpacity);
-            this.Controls.Add(this.chkTopMost);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.chkToggle);
-            this.Controls.Add(this.rdbShift);
-            this.Controls.Add(this.rdbPause);
-            this.Controls.Add(this.rdbCtrl);
-            this.Controls.Add(this.rdbAlt);
-            this.Controls.Add(this.rdbScroll);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.rdbNum);
-            this.Controls.Add(this.rdbCaps);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.numTick);
-            this.Controls.Add(this.trkTick);
-            this.Controls.Add(this.trkOpacity);
+            this.ClientSize = new System.Drawing.Size(410, 220);
+            this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmAutoClicker";
             this.Text = "AutoClicker";
@@ -345,15 +339,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.trkTick)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trkOpacity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numOpacity)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btnActive;
+        private System.Windows.Forms.Button btnActivate;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.NumericUpDown numTick;
         private System.Windows.Forms.TrackBar trkTick;
@@ -369,12 +367,11 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Timer timToggle;
         private System.Windows.Forms.RadioButton rdbPause;
-        private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton rdbScroll;
         private System.Windows.Forms.TrackBar trkOpacity;
         private System.Windows.Forms.CheckBox chkTopMost;
-        private System.Windows.Forms.NumericUpDown numOpacity;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblOpacity;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
 

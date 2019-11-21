@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
-using System.Runtime.InteropServices;
 
 namespace AutoClicker
 {
@@ -17,14 +16,12 @@ namespace AutoClicker
         public frmAutoClicker()
         {
             InitializeComponent();
+
             numTick.Maximum = trkTick.Maximum;
             numTick.Minimum = trkTick.Minimum;
-            trkTick.Value = timClock.Interval;
+            numTick.Value = trkTick.Value;
 
-
-            numOpacity.Maximum = trkOpacity.Maximum;
-            numOpacity.Minimum = trkOpacity.Minimum;
-
+            timClock.Interval = trkTick.Value;
         }
         private void Form1_Shown(object sender, EventArgs e)
         {
@@ -81,13 +78,24 @@ namespace AutoClicker
                 }
 
                 if (Settings.Args[i].Equals(StringComparison.InvariantCultureIgnoreCase, "-r", "--active"))
-                    btnActive.PerformClick();
+                    btnActivate.PerformClick();
+
+                if (Settings.Args[i].Equals("--TopMost", StringComparison.InvariantCultureIgnoreCase))
+                    chkTopMost.Checked = true;
 
                 if ((Settings.Args[i].Equals("--opacity", StringComparison.InvariantCultureIgnoreCase)) && i + 1 < Settings.Args.Length)
                 {
                     int parse;
                     if (int.TryParse(Settings.Args[i + 1], out parse))
+                    {
+                        if (parse > trkOpacity.Maximum)
+                            parse = trkOpacity.Maximum;
+                        if (parse < trkOpacity.Minimum)
+                            parse = trkOpacity.Minimum;
+                        
                         trkOpacity.Value = parse;
+                        Opacity = 1;
+                    }
                 }
             }
             #endregion
@@ -104,19 +112,14 @@ namespace AutoClicker
             trkTick.Value = (int)numTick.Value;
         }
         
-        private const int MOUSEEVENTF_LEFTDOWN = 0x0002; /* left button down */
-        private const int MOUSEEVENTF_LEFTUP = 0x0004; /* left button up */
 
-        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention= CallingConvention.StdCall)]
-        public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
 
         private void timClock_Tick(object sender, EventArgs e)
         {
             if (rdbCaps.Checked && Keyboard.IsKeyToggled(Key.CapsLock) || rdbNum.Checked && Keyboard.IsKeyToggled(Key.NumLock) || rdbScroll.Checked && Keyboard.IsKeyToggled(Key.Scroll) ||
                 AsToggleRdb() && ToggleKeyDown() || ToggleOn)
             {
-                mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-                mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+                MouseActionInput.LeftClick();
             }
         }
 
@@ -127,7 +130,7 @@ namespace AutoClicker
             EnabledControl(true);
         }
 
-        private void btnActive_Click(object sender, EventArgs e)
+        private void btnActivate_Click(object sender, EventArgs e)
         {
             EnabledControl(false);
             SetToggleKey();
@@ -140,7 +143,7 @@ namespace AutoClicker
         private void EnabledControl(bool enabled)
         {
             btnStop.Enabled = !enabled;
-            btnActive.Enabled = enabled;
+            btnActivate.Enabled = enabled;
             trkTick.Enabled = enabled;
             numTick.Enabled = enabled;
 
@@ -154,14 +157,13 @@ namespace AutoClicker
             rdbCtrl.Enabled = enabled;
             rdbShift.Enabled = enabled;
             rdbPause.Enabled = enabled;
-            
         }
 
         private void timToggle_Tick(object sender, EventArgs e)
         {
-            if (!KeyTogglePressed && ToggleKeyDown())
+            if (!ToggleKeyPressed && ToggleKeyDown())
             {
-                KeyPressed = true;
+                ToggleKeyPressed = true;
 
                 if (!ToggleOn)
                 {
@@ -175,8 +177,8 @@ namespace AutoClicker
                     return;
                 }
             }
-            if (KeyPressed && !ToggleKeyDown())
-                KeyPressed = false;
+            if (ToggleKeyPressed && !ToggleKeyDown())
+                ToggleKeyPressed = false;
         }
 
         Key[] ToggleKey = new Key[] { Key.LeftShift, Key.RightShift, Key.LeftAlt, Key.RightAlt, Key.LeftCtrl, Key.RightCtrl };
@@ -206,24 +208,17 @@ namespace AutoClicker
                     return true;
             return false;
         }
-
-        bool KeyPressed;
+        
         bool ToggleOn;
-
-        public bool KeyTogglePressed { get; private set; }
+        bool ToggleKeyPressed;
 
 
         #region Opacity
 
-        private void numOpacity_ValueChanged(object sender, EventArgs e)
-        {
-            trkOpacity.Value = (int)numOpacity.Value;
-        }
-
         private void trkOpacity_ValueChanged(object sender, EventArgs e)
         {
             Opacity = trkOpacity.Value/100d;
-            numOpacity.Value = trkOpacity.Value;
+            lblOpacity.Text = trkOpacity.Value + "% opacity";
         }
 
         private void trkOpacity_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -252,5 +247,6 @@ namespace AutoClicker
         {
             TopMost = chkTopMost.Checked;
         }
+        
     }
 }
