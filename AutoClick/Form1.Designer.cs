@@ -44,6 +44,9 @@
             this.ttiToggle = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.timToggle = new System.Windows.Forms.Timer(this.components);
+            this.rdbPause = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rdbScroll = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.numNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkTrackBar)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -156,18 +159,18 @@
             this.chkToggle.AccessibleDescription = "";
             this.chkToggle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkToggle.AutoSize = true;
-            this.chkToggle.Location = new System.Drawing.Point(309, 87);
+            this.chkToggle.Location = new System.Drawing.Point(315, 87);
             this.chkToggle.Name = "chkToggle";
             this.chkToggle.Size = new System.Drawing.Size(89, 17);
             this.chkToggle.TabIndex = 7;
             this.chkToggle.Text = "Toggle Mode";
-            this.ttiToggle.SetToolTip(this.chkToggle, "Enable the Toggle Mode for \"Ctrl\", \"Alt\" and \"Maj\".");
+            this.ttiToggle.SetToolTip(this.chkToggle, "Enable the Toggle Mode for \"Ctrl\", \"Alt\", \"Maj\" and \"Pause\".");
             this.chkToggle.UseVisualStyleBackColor = true;
             // 
             // rdbAlt
             // 
             this.rdbAlt.AutoSize = true;
-            this.rdbAlt.Location = new System.Drawing.Point(109, 63);
+            this.rdbAlt.Location = new System.Drawing.Point(195, 63);
             this.rdbAlt.Name = "rdbAlt";
             this.rdbAlt.Size = new System.Drawing.Size(37, 17);
             this.rdbAlt.TabIndex = 6;
@@ -177,7 +180,7 @@
             // rdbCtrl
             // 
             this.rdbCtrl.AutoSize = true;
-            this.rdbCtrl.Location = new System.Drawing.Point(109, 86);
+            this.rdbCtrl.Location = new System.Drawing.Point(195, 86);
             this.rdbCtrl.Name = "rdbCtrl";
             this.rdbCtrl.Size = new System.Drawing.Size(40, 17);
             this.rdbCtrl.TabIndex = 6;
@@ -187,7 +190,7 @@
             // rdbShift
             // 
             this.rdbShift.AutoSize = true;
-            this.rdbShift.Location = new System.Drawing.Point(152, 63);
+            this.rdbShift.Location = new System.Drawing.Point(238, 63);
             this.rdbShift.Name = "rdbShift";
             this.rdbShift.Size = new System.Drawing.Size(46, 17);
             this.rdbShift.TabIndex = 6;
@@ -215,6 +218,36 @@
             this.timToggle.Interval = 10;
             this.timToggle.Tick += new System.EventHandler(this.timToggle_Tick);
             // 
+            // rdbPause
+            // 
+            this.rdbPause.AutoSize = true;
+            this.rdbPause.Location = new System.Drawing.Point(238, 86);
+            this.rdbPause.Name = "rdbPause";
+            this.rdbPause.Size = new System.Drawing.Size(55, 17);
+            this.rdbPause.TabIndex = 6;
+            this.rdbPause.Text = "Pause";
+            this.rdbPause.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(94, 63);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(78, 17);
+            this.radioButton1.TabIndex = 6;
+            this.radioButton1.Text = "Scroll Lock";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // rdbScroll
+            // 
+            this.rdbScroll.AutoSize = true;
+            this.rdbScroll.Location = new System.Drawing.Point(94, 63);
+            this.rdbScroll.Name = "rdbScroll";
+            this.rdbScroll.Size = new System.Drawing.Size(78, 17);
+            this.rdbScroll.TabIndex = 6;
+            this.rdbScroll.Text = "Scroll Lock";
+            this.rdbScroll.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -223,8 +256,11 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.chkToggle);
             this.Controls.Add(this.rdbShift);
+            this.Controls.Add(this.rdbPause);
             this.Controls.Add(this.rdbCtrl);
             this.Controls.Add(this.rdbAlt);
+            this.Controls.Add(this.rdbScroll);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.rdbNum);
             this.Controls.Add(this.rdbCaps);
             this.Controls.Add(this.label1);
@@ -259,6 +295,9 @@
         private System.Windows.Forms.ToolTip ttiToggle;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Timer timToggle;
+        private System.Windows.Forms.RadioButton rdbPause;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rdbScroll;
     }
 }
 

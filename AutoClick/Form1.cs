@@ -43,7 +43,11 @@ namespace AutoClick
                     }
                     else if(Settings.Args[i+1].Equals(StringComparison.InvariantCultureIgnoreCase, "Num", "NumLock"))
                     {
-                        rdbShift.Checked = true;
+                        rdbNum.Checked = true;
+                    }
+                    else if (Settings.Args[i + 1].Equals(StringComparison.InvariantCultureIgnoreCase, "Scroll", "ScrollLock"))
+                    {
+                        rdbScroll.Checked = true;
                     }
                     else if (Settings.Args[i+1].Equals("Alt", StringComparison.InvariantCultureIgnoreCase))
                     {
@@ -82,8 +86,7 @@ namespace AutoClick
         {
             trkTrackBar.Value = (int)numNumeric.Value;
         }
-
-        private const int MOUSEEVENTF_MOVE = 0x0001; /* mouse move */
+        
         private const int MOUSEEVENTF_LEFTDOWN = 0x0002; /* left button down */
         private const int MOUSEEVENTF_LEFTUP = 0x0004; /* left button up */
 
@@ -92,8 +95,8 @@ namespace AutoClick
 
         private void timClock_Tick(object sender, EventArgs e)
         {
-            if (rdbCaps.Checked && Keyboard.IsKeyToggled(Key.CapsLock) || rdbNum.Checked && Keyboard.IsKeyToggled(Key.NumLock) ||
-                (rdbAlt.Checked || rdbCtrl.Checked || rdbShift.Checked) && ToggleKeyDown() || ToggleOn)
+            if (rdbCaps.Checked && Keyboard.IsKeyToggled(Key.CapsLock) || rdbNum.Checked && Keyboard.IsKeyToggled(Key.NumLock) || rdbScroll.Checked && Keyboard.IsKeyToggled(Key.Scroll) ||
+                AsToggleRdb() && ToggleKeyDown() || ToggleOn)
             {
                 mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
                 mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
@@ -111,7 +114,7 @@ namespace AutoClick
         {
             EnabledControl(false);
             SetToggleKey();
-            if (chkToggle.Checked && !rdbCaps.Checked && !rdbNum.Checked)
+            if (chkToggle.Checked && AsToggleRdb())
                 timToggle.Start();
 
             timClock.Start();
@@ -129,9 +132,12 @@ namespace AutoClick
 
             rdbCaps.Enabled = enabled;
             rdbNum.Enabled = enabled;
+            rdbScroll.Enabled = enabled;
+
             rdbAlt.Enabled = enabled;
             rdbCtrl.Enabled = enabled;
             rdbShift.Enabled = enabled;
+            rdbPause.Enabled = enabled;
         }
 
         private void timToggle_Tick(object sender, EventArgs e)
@@ -166,14 +172,21 @@ namespace AutoClick
                 ToggleKey = new Key[] { Key.LeftCtrl, Key.RightCtrl };
             else if (rdbShift.Checked)
                 ToggleKey = new Key[] { Key.LeftShift, Key.RightShift };
+            else if (rdbPause.Checked)
+                ToggleKey = new Key[] { Key.Pause };
         }
-        
+
+        private bool AsToggleRdb()
+        {
+            return (rdbAlt.Checked || rdbCtrl.Checked || rdbShift.Checked || rdbPause.Checked);
+        }
+
+
         private bool ToggleKeyDown()
         {
             foreach (Key item in ToggleKey)
                 if (Keyboard.IsKeyDown(item))
                     return true;
-
             return false;
         }
 
