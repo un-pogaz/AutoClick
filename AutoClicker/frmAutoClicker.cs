@@ -79,6 +79,7 @@ namespace AutoClicker
 
                 if (Settings.Args[i].Equals(StringComparison.InvariantCultureIgnoreCase, "-r", "--active"))
                     btnActivate.PerformClick();
+                
 
                 if (Settings.Args[i].Equals("--TopMost", StringComparison.InvariantCultureIgnoreCase))
                     chkTopMost.Checked = true;
@@ -111,7 +112,6 @@ namespace AutoClicker
         {
             trkTick.Value = (int)numTick.Value;
         }
-        
 
 
         private void timClock_Tick(object sender, EventArgs e)
