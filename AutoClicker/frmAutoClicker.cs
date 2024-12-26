@@ -77,7 +77,7 @@ namespace AutoClicker
                     #endregion
                 }
 
-                if (Settings.Args[i].Equals(StringComparison.InvariantCultureIgnoreCase, "-r", "--active"))
+                if (Settings.Args[i].Equals(StringComparison.InvariantCultureIgnoreCase, "-a", "--active"))
                     btnActivate.PerformClick();
                 
 

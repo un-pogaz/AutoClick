@@ -24,7 +24,7 @@ Set the key for generate clicks
 
 Enable the toggle mode for "Ctrl", "Alt", "Maj" and "Pause"
 
--r --active
+-a --active
 
 Active AutoClicker
 
