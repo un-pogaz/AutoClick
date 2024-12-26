@@ -68,6 +68,10 @@
     <Compile Include="Settings.cs" />
     <Compile Include="StringExtension.cs" />
     <Compile Include="WhiteCharacter.cs" />
+    <EmbeddedResource Include="frmAutoClicker.resx">
+      <DependentUpon>frmAutoClicker.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
