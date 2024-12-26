@@ -38,42 +38,26 @@ namespace AutoClicker
                 }
 
                 if (Settings.Args[i].Equals("--toggle", StringComparison.InvariantCultureIgnoreCase) && i + 1 < Settings.Args.Length)
-                {
                     chkToggle.Checked = true;
-                }
 
                 if ((Settings.Args[i].Equals(StringComparison.InvariantCultureIgnoreCase, "-k", "--key")) && i + 1 < Settings.Args.Length)
                 {
-                    #region Key
+                    #region Keys
                     if (Settings.Args[i + 1].Equals(StringComparison.InvariantCultureIgnoreCase, "Caps", "CapsLock"))
-                    {
                         rdbCaps.Checked = true;
-                    }
                     else if (Settings.Args[i + 1].Equals(StringComparison.InvariantCultureIgnoreCase, "Num", "NumLock"))
-                    {
                         rdbNum.Checked = true;
-                    }
                     else if (Settings.Args[i + 1].Equals(StringComparison.InvariantCultureIgnoreCase, "Scroll", "ScrollLock"))
-                    {
                         rdbScroll.Checked = true;
-                    }
 
                     else if (Settings.Args[i + 1].Equals("Alt", StringComparison.InvariantCultureIgnoreCase))
-                    {
                         rdbAlt.Checked = true;
-                    }
                     else if (Settings.Args[i + 1].Equals("Ctrl", StringComparison.InvariantCultureIgnoreCase))
-                    {
                         rdbCtrl.Checked = true;
-                    }
                     else if (Settings.Args[i + 1].Equals("Shift", StringComparison.InvariantCultureIgnoreCase))
-                    {
                         rdbShift.Checked = true;
-                    }
                     else if (Settings.Args[i + 1].Equals("Pause", StringComparison.InvariantCultureIgnoreCase))
-                    {
                         rdbPause.Checked = true;
-                    }
                     #endregion
                 }
 
